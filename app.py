@@ -5,14 +5,15 @@ import pandas as pd
 import numpy as np
 import pickle
 
+# -----------------------------
 # LOAD MODEL
-
+# -----------------------------
 with open("model1.pkl", "rb") as f:
     model, scaler, le, columns = pickle.load(f)
 
-
+# -----------------------------
 # TITLE
-
+# -----------------------------
 st.title("🌱 Smart Agriculture Prediction App")
 
 st.write("Enter input values to predict output")
@@ -25,7 +26,10 @@ user_input = []
 for col in columns:
     val = st.number_input(f"{col}", value=0.0)
     user_input.append(val)
+
+# -----------------------------
 # PREDICTION
+# -----------------------------
 if st.button("Predict"):
     try:
         input_data = pd.DataFrame([user_input], columns=columns)
@@ -43,7 +47,10 @@ if st.button("Predict"):
 
     except Exception as e:
         st.error(f"Error: {e}")
+
+# -----------------------------
 # OPTIONAL: SHOW DATASET
+# -----------------------------
 st.subheader("Dataset Preview")
 
 if st.button("Show Dataset"):
